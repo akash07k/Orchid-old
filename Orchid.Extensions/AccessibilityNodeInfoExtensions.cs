@@ -1,6 +1,6 @@
 ﻿namespace Orchid.Extensions
 {
-    public class AccessibilityNodeInfoExtensions
+    public static class AccessibilityNodeInfoExtensions
     {
     }
 }
