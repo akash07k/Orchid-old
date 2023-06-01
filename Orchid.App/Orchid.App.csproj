@@ -12,4 +12,8 @@
   <ItemGroup>
     <None Remove="Resources\xml\ServiceConfig.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Xamarin.AndroidX.AppCompat" Version="1.6.1.2" />
+    <PackageReference Include="Xamarin.AndroidX.Core" Version="1.10.1.1" />
+  </ItemGroup>
 </Project>
