@@ -16,5 +16,18 @@ namespace Orchid.Extensions
 
     public static class AccessibilityNodeInfoExtensions
     {
+        #region Public Methods
+
+        /// <summary>
+        /// Checks if the node has any type of click
+        /// </summary>
+        /// <param name="node">AccessibilityNodeInfo</param>
+        /// <returns>True if the node has any type of click, false otherwise</returns>
+        public static bool HasClick(this NodeInfo node)
+        {
+            return node.Clickable || node.LongClickable;
+        }
+
+        #endregion Public Methods
     }
 }
