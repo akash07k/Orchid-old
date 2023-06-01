@@ -11,6 +11,9 @@ using System.Threading.Tasks;
 
 namespace Orchid.Extensions
 {
+    using NodeInfo = AccessibilityNodeInfoCompat;
+    using NodeAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat;
+
     public static class AccessibilityNodeInfoExtensions
     {
     }
