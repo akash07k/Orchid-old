@@ -33,6 +33,21 @@ namespace Orchid.Extensions
             return node.Clickable || node.LongClickable;
         }
 
+        /// <summary>
+        /// Checks if the node has any visible text, hint text or content description.
+        /// </summary>
+        /// <param name="node">The AccessibilityNodeInfo object representing the node to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the node has any visible text or content description; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool HasText(this NodeInfo node)
+        {
+            return
+                            !node.ContentDescription.IsNullOrEmpty() ||
+                            !node.Text.IsNullOrEmpty() ||
+                            !node.HintText.IsNullOrEmpty();
+        }
+
         #endregion Public Methods
     }
 }
