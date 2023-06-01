@@ -14,6 +14,9 @@ namespace Orchid.Extensions
     using NodeInfo = AccessibilityNodeInfoCompat;
     using NodeAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 
+    /// <summary>
+    /// An extension class for AccessibilityNodeInfoCompat which provides handy extension methods for extending the functionality of original AccessibilityNodeInfoCompat class
+    /// </summary>
     public static class AccessibilityNodeInfoExtensions
     {
         #region Public Methods
