@@ -15,17 +15,19 @@ namespace Orchid.Extensions
     using NodeAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 
     /// <summary>
-    /// An extension class for AccessibilityNodeInfoCompat which provides handy extension methods for extending the functionality of original AccessibilityNodeInfoCompat class
+    /// An extension class for AccessibilityNodeInfoCompat which provides handy extension methods for extending the functionality of original AccessibilityNodeInfoCompat class.
     /// </summary>
     public static class AccessibilityNodeInfoExtensions
     {
         #region Public Methods
 
         /// <summary>
-        /// Checks if the node has any type of click
+        /// Determines if the node has any type of click.
         /// </summary>
-        /// <param name="node">AccessibilityNodeInfo</param>
-        /// <returns>True if the node has any type of click, false otherwise</returns>
+        /// <param name="node">The AccessibilityNodeInfo object representing the node to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the node has any type of click; otherwise, <c>false</c>.
+        /// </returns>
         public static bool HasClick(this NodeInfo node)
         {
             return node.Clickable || node.LongClickable;
