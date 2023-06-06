@@ -53,7 +53,7 @@ namespace Orchid.App.Utils
 
         public void Speak(string text)
         {
-            Log.Info(_TAG, $"Speaking the text: {text}");
+            Log.Debug(_TAG, $"Speaking the text: {text}.");
             _textToSpeech.Speak(text, QueueMode.Flush, null, null);
         }
 
