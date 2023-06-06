@@ -45,7 +45,7 @@ namespace Orchid.App.EventProcessors
 
         public void OnEvent(AccessibilityEvent accessibilityEvent)
         {
-            // TODO
+            Log.Debug(_TAG, "Received the event, processing it.");
         }
 
         #endregion Public Methods
