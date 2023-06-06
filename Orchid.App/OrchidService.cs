@@ -1,6 +1,9 @@
 ﻿using Android.AccessibilityServices;
 using Android.Runtime;
+using Android.Util;
 using Android.Views.Accessibility;
+using Orchid.App.EventProcessors;
+using Orchid.App.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,16 +16,28 @@ namespace Orchid.App
     [Register("com.techromantica.orchid.service")]
     public class OrchidService : AccessibilityService
     {
+        #region Private Fields
+
+        private const string _TAG = "Orchid.Service";
+        private List<IEventProcessor> _eventProcessors = new List<IEventProcessor>();
+
+        #endregion Private Fields
+
         #region Public Methods
 
         public override void OnAccessibilityEvent(AccessibilityEvent? e)
         {
-            throw new NotImplementedException();
+            Log.Debug(_TAG, "Received the accessibility event");
+            foreach (var processor in _eventProcessors)
+            {
+                Log.Debug(_TAG, $"Propagating the accessibility event to {processor.Name}.");
+                processor.OnEvent(e);
+            }
         }
 
         public override void OnInterrupt()
         {
-            throw new NotImplementedException();
+            // TODO
         }
 
         #endregion Public Methods
@@ -32,6 +47,11 @@ namespace Orchid.App
         protected override void OnServiceConnected()
         {
             base.OnServiceConnected();
+            Log.Debug(_TAG, "OnServiceConnected: Configuring the service.");
+            SpeechEventProcessor speechEventProcessor = new(BaseContext);
+            FocusEventProcessor focusEventProcessor = new(BaseContext);
+            _eventProcessors.Add(speechEventProcessor);
+            _eventProcessors.Add(focusEventProcessor);
         }
 
         #endregion Protected Methods
