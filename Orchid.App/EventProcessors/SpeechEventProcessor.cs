@@ -10,6 +10,21 @@ namespace Orchid.App.EventProcessors
 {
     public class SpeechEventProcessor : IEventProcessor
     {
+        #region Private Fields
+
+        private const string _TAG = "Orchid.SpeechEventProcessor";
+
+        #endregion Private Fields
+
+        #region Public Properties
+
+        public string Name
+        {
+            get { return _TAG; }
+        }
+
+        #endregion Public Properties
+
         #region Public Methods
 
         public void OnEvent(AccessibilityEvent accessibilityEvent)

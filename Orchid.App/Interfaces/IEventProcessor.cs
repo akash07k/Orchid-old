@@ -9,6 +9,12 @@ namespace Orchid.App.Interfaces
 {
     public interface IEventProcessor
     {
+        #region Public Properties
+
+        string Name { get; }
+
+        #endregion Public Properties
+
         #region Public Methods
 
         void OnEvent(AccessibilityEvent accessibilityEvent);
