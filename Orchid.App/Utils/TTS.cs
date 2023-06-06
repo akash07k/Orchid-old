@@ -14,7 +14,7 @@ namespace Orchid.App.Utils
     {
         #region Private Fields
 
-        private const string TAG = "Orchid.TTS";
+        private const string _TAG = "Orchid.TTS";
         private readonly Context _context;
         private readonly TextToSpeech _textToSpeech;
 
@@ -24,7 +24,7 @@ namespace Orchid.App.Utils
 
         public TTS(Context context)
         {
-            Log.Info(TAG, "Initializing the TTS");
+            Log.Info(_TAG, "Initializing the TTS");
             _context = context;
             _textToSpeech = new(context, this);
         }
@@ -37,23 +37,23 @@ namespace Orchid.App.Utils
         {
             if (status == OperationResult.Success)
             {
-                Log.Info(TAG, "TTS initialized successfully");
+                Log.Info(_TAG, "TTS initialized successfully");
             }
             if (status == OperationResult.Error)
             {
-                Log.Error(TAG, "Error while initializing the TTS");
+                Log.Error(_TAG, "Error while initializing the TTS");
             }
         }
 
         public void Shutdown()
         {
-            Log.Info(TAG, "Shutting down the TTS");
+            Log.Info(_TAG, "Shutting down the TTS");
             _textToSpeech.Shutdown();
         }
 
         public void Speak(string text)
         {
-            Log.Info(TAG, $"Speaking the text: {text}");
+            Log.Info(_TAG, $"Speaking the text: {text}");
             _textToSpeech.Speak(text, QueueMode.Flush, null, null);
         }
 
