@@ -1,6 +1,7 @@
 ﻿using Android.Content;
 using Android.Util;
 using Android.Views.Accessibility;
+using AndroidX.Core.View.Accessibility;
 using Orchid.App.Interfaces;
 using Orchid.App.Utils;
 using System;
@@ -11,6 +12,8 @@ using System.Threading.Tasks;
 
 namespace Orchid.App.EventProcessors
 {
+    using NodeInfo = AccessibilityNodeInfoCompat;
+
     public class FocusEventProcessor : IEventProcessor
     {
         #region Private Fields
