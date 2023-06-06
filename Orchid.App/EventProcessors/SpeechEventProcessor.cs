@@ -1,5 +1,8 @@
-﻿using Android.Views.Accessibility;
+﻿using Android.Content;
+using Android.Util;
+using Android.Views.Accessibility;
 using Orchid.App.Interfaces;
+using Orchid.App.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,6 +16,8 @@ namespace Orchid.App.EventProcessors
         #region Private Fields
 
         private const string _TAG = "Orchid.SpeechEventProcessor";
+        private Context _context;
+        private TTS _tts;
 
         #endregion Private Fields
 
@@ -24,6 +29,17 @@ namespace Orchid.App.EventProcessors
         }
 
         #endregion Public Properties
+
+        #region Public Constructors
+
+        public SpeechEventProcessor(Context context)
+        {
+            Log.Debug(_TAG, $"Initializing the {_TAG}.");
+            _context = context;
+            _tts = new TTS(context);
+        }
+
+        #endregion Public Constructors
 
         #region Public Methods
 
