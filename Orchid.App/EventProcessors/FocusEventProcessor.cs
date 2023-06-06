@@ -16,8 +16,8 @@ namespace Orchid.App.EventProcessors
         #region Private Fields
 
         private const string _TAG = "Orchid.FocusEventProcessor";
-        private Context _context;
-        private TTS _tts;
+        private readonly Context _context;
+        private readonly TTS _tts;
 
         #endregion Private Fields
 
