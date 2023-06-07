@@ -30,7 +30,8 @@ namespace Orchid.Extensions
         /// </returns>
         public static bool HasClick(this NodeInfo node)
         {
-            return node.Clickable || node.LongClickable;
+            bool hasClick = node.Clickable || node.LongClickable;
+            return hasClick;
         }
 
         /// <summary>
@@ -42,10 +43,10 @@ namespace Orchid.Extensions
         /// </returns>
         public static bool HasText(this NodeInfo node)
         {
-            return
-                            !node.ContentDescription.IsNullOrEmpty() ||
+            bool hasText = !node.ContentDescription.IsNullOrEmpty() ||
                             !node.Text.IsNullOrEmpty() ||
                             !node.HintText.IsNullOrEmpty();
+            return hasText;
         }
 
         #endregion Public Methods
