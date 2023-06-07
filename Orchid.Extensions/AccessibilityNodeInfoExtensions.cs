@@ -1,4 +1,5 @@
 ﻿using Android.Text;
+using Android.Util;
 using Android.Views;
 using Android.Widget;
 using AndroidX.Core.View.Accessibility;
@@ -19,6 +20,12 @@ namespace Orchid.Extensions
     /// </summary>
     public static class AccessibilityNodeInfoExtensions
     {
+        #region Private Fields
+
+        private static string _TAG = "Orchid.AccessibilityNodeExtensions";
+
+        #endregion Private Fields
+
         #region Public Methods
 
         /// <summary>
@@ -31,6 +38,7 @@ namespace Orchid.Extensions
         public static bool HasClick(this NodeInfo node)
         {
             bool hasClick = node.Clickable || node.LongClickable;
+            Log.Debug(_TAG, $"Has click: {hasClick}");
             return hasClick;
         }
 
@@ -46,6 +54,7 @@ namespace Orchid.Extensions
             bool hasText = !node.ContentDescription.IsNullOrEmpty() ||
                             !node.Text.IsNullOrEmpty() ||
                             !node.HintText.IsNullOrEmpty();
+            Log.Debug(_TAG, _TAG, $"Has text: {hasText}");
             return hasText;
         }
 
