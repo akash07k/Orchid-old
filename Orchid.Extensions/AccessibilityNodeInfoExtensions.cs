@@ -15,18 +15,18 @@ namespace Orchid.Extensions
     using NodeAction = AccessibilityNodeInfoCompat.AccessibilityActionCompat;
 
     /// <summary>
-    /// An extension class for AccessibilityNodeInfoCompat which provides handy extension methods for extending the functionality of original AccessibilityNodeInfoCompat class.
+    /// An extension class for <see cref="NodeInfo"/> which provides handy extension methods for extending the functionality of original class.
     /// </summary>
     public static class AccessibilityNodeInfoExtensions
     {
         #region Public Methods
 
         /// <summary>
-        /// Determines if the node has any type of click.
+        /// Determines if the <see cref="NodeInfo"/> has any type of click.
         /// </summary>
-        /// <param name="node">The AccessibilityNodeInfo object representing the node to check.</param>
+        /// <param name="node">The <see cref="NodeInfo"/> object representing the node to check.</param>
         /// <returns>
-        ///   <c>true</c> if the node has any type of click; otherwise, <c>false</c>.
+        ///   <c>true</c> if the <see cref="NodeInfo"/> has any type of click; otherwise, <c>false</c>.
         /// </returns>
         public static bool HasClick(this NodeInfo node)
         {
@@ -34,11 +34,11 @@ namespace Orchid.Extensions
         }
 
         /// <summary>
-        /// Checks if the node has any visible text, hint text or content description.
+        /// Checks if the <see cref="NodeInfo"/> has any visible text, hint text or content description.
         /// </summary>
-        /// <param name="node">The AccessibilityNodeInfo object representing the node to check.</param>
+        /// <param name="node">The <see cref="NodeInfo"/> object representing the node to check.</param>
         /// <returns>
-        ///   <c>true</c> if the node has any visible text or content description; otherwise, <c>false</c>.
+        ///   <c>true</c> if the <see cref="NodeInfo"/> has any visible text or content description; otherwise, <c>false</c>.
         /// </returns>
         public static bool HasText(this NodeInfo node)
         {
