@@ -45,7 +45,7 @@ namespace Orchid.Extensions
         /// <returns>A string that represents the joined elements of the enumerable collection.</returns>
         public static string JoinToString<T>(this IEnumerable<T> values, string delimiter)
         {
-            return string.Join(delimiter, values.Select(v => v.ToString()));
+            return string.Join(delimiter, values?.Select(v => v?.ToString()));
         }
 
         #endregion Public Methods
