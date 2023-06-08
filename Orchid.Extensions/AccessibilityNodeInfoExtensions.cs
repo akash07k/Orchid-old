@@ -6,6 +6,7 @@ using AndroidX.Core.View.Accessibility;
 
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -115,7 +116,7 @@ namespace Orchid.Extensions
                 Log.Error(_TAG, ex.Message);
             }
             string logContent = logList?.JoinToString("\n");
-            Log.Debug(_TAG, $"{logContent}");
+            Debug.Write($"Node information: {Environment.NewLine}{logContent}");
             return logContent;
         }
 
