@@ -22,7 +22,7 @@ namespace Orchid.Extensions
     {
         #region Private Fields
 
-        private static string _TAG = "Orchid.AccessibilityNodeExtensions";
+        private static string _TAG = "Orchid.AccessibilityNodeInfoExtensions";
 
         #endregion Private Fields
 
