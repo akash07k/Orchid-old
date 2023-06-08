@@ -30,7 +30,7 @@ namespace Orchid.App
             Log.Debug(_TAG, "Received the accessibility event");
             foreach (var processor in _eventProcessors)
             {
-                Log.Debug(_TAG, $"Propagating the accessibility event to {processor.Name}.");
+                // Log.Debug(_TAG, $"Propagating the accessibility event to {processor.Name}.");
                 processor.OnEvent(e);
             }
         }
