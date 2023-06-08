@@ -50,8 +50,10 @@ namespace Orchid.App
             Log.Debug(_TAG, "OnServiceConnected: Configuring the service.");
             SpeechEventProcessor speechEventProcessor = new(BaseContext);
             FocusEventProcessor focusEventProcessor = new(BaseContext);
+            var hapticEventProcessor = new HapticEventProcessor(BaseContext);
             _eventProcessors.Add(speechEventProcessor);
             _eventProcessors.Add(focusEventProcessor);
+            _eventProcessors.Add(hapticEventProcessor);
         }
 
         #endregion Protected Methods
