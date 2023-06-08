@@ -47,7 +47,7 @@ namespace Orchid.App
         protected override void OnServiceConnected()
         {
             base.OnServiceConnected();
-            Log.Debug(_TAG, "OnServiceConnected: Configuring the service.");
+            Log.Info(_TAG, "OnServiceConnected: Configuring the service.");
             var speechEventProcessor = new SpeechEventProcessor(BaseContext);
             var focusEventProcessor = new FocusEventProcessor(BaseContext);
             var hapticEventProcessor = new HapticEventProcessor(BaseContext);
