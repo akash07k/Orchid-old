@@ -4,6 +4,7 @@ using Android.Views.Accessibility;
 using AndroidX.Core.View.Accessibility;
 using Orchid.App.Interfaces;
 using Orchid.App.Utils;
+using Orchid.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -49,6 +50,16 @@ namespace Orchid.App.EventProcessors
         public void OnEvent(AccessibilityEvent accessibilityEvent)
         {
             // Log.Debug(_TAG, "Received the event, processing it.");
+            var node = NodeInfo.Wrap(accessibilityEvent.Source);
+            if (node != null)
+            {
+                switch (accessibilityEvent.EventType)
+                {
+                    case EventTypes.ViewHoverEnter:
+                        _tts.Speak(node.GetContent(_context));
+                        break;
+                }
+            }
         }
 
         #endregion Public Methods
