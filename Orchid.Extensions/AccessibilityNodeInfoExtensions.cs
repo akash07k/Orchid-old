@@ -1,4 +1,5 @@
-﻿using Android.Text;
+﻿using Android.Content;
+using Android.Text;
 using Android.Util;
 using Android.Views;
 using Android.Widget;
@@ -10,6 +11,8 @@ using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+
+using Orchid.Extensions.Enums;
 
 namespace Orchid.Extensions
 {
@@ -28,6 +31,161 @@ namespace Orchid.Extensions
         #endregion Private Fields
 
         #region Public Methods
+
+        /// <summary>
+        /// Retrieves the <see cref="NodeInfo"/> node type based on the properties of the specified node.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> NodeInfo object representing the node to determine the type for.</param>
+        /// <returns>
+        ///   The NodeType corresponding to the properties of the node. The returned NodeType can be one of the following:
+        ///   - If the node is an ImageButton, NodeType.BUTTON is returned.
+        ///   - If the node is an ImageView and clickable, NodeType.BUTTON is returned; otherwise, NodeType.IMAGE is returned.
+        ///   - If the node is an EditText, NodeType.EDITABLE is returned.
+        ///   - If the node is a Switch, NodeType.SWITCH is returned.
+        ///   - If the node is a ToggleButton, NodeType.TOGGLE is returned.
+        ///   - If the node is a RadioButton, NodeType.RADIO is returned.
+        ///   - If the node is a CheckBox, NodeType.CHECKBOX is returned.
+        ///   - If the node is a Button, NodeType.BUTTON is returned.
+        ///   - If the node is an AbsListView, NodeType.LIST is returned.
+        ///   - If the node is an AbsSpinner, NodeType.OPTIONS is returned.
+        ///   - If the node is checkable, NodeType.CHECKABLE is returned.
+        ///   - If the node is editable, NodeType.EDITABLE is returned.
+        ///   - If the node has a CollectionInfo, NodeType.LIST is returned.
+        ///   - If the node is a heading, NodeType.TITLE is returned.
+        ///   - If the node is clickable, NodeType.BUTTON is returned.
+        ///   - If none of the above conditions match, NodeType.NONE is returned.
+        /// </returns>
+        public static NodeType GetNodeType(this NodeInfo node)
+        {
+            Debug.WriteLine("Getting the node type");
+            if (typeof(ImageButton).IsInstanceOfType(node))
+            {
+                return NodeType.BUTTON;
+            }
+            if (typeof(ImageView).IsInstanceOfType(node))
+            {
+                return node.Clickable ? NodeType.BUTTON : NodeType.IMAGE;
+            }
+            if (typeof(EditText).IsInstanceOfType(node))
+            {
+                return NodeType.EDITABLE;
+            }
+            if (typeof(Android.Widget.Switch).IsInstanceOfType(node))
+            {
+                return NodeType.SWITCH;
+            }
+            if (typeof(ToggleButton).IsInstanceOfType(node))
+            {
+                return NodeType.TOGGLE;
+            }
+            if (typeof(RadioButton).IsInstanceOfType(node))
+            {
+                return NodeType.RADIO;
+            }
+            if (typeof(CheckBox).IsInstanceOfType(node))
+            {
+                return NodeType.CHECKBOX;
+            }
+            if (typeof(Button).IsInstanceOfType(node))
+            {
+                return NodeType.BUTTON;
+            }
+            if (typeof(AbsListView).IsInstanceOfType(node))
+            {
+                return NodeType.LIST;
+            }
+            if (typeof(AbsSpinner).IsInstanceOfType(node))
+            {
+                return NodeType.OPTION;
+            }
+            if (node.Checkable)
+            {
+                return NodeType.CHECKABLE;
+            }
+            if (node.Editable)
+            {
+                return NodeType.EDITABLE;
+            }
+            if (node.CollectionInfo != null)
+            {
+                return NodeType.LIST;
+            }
+            if (node.Heading)
+            {
+                return NodeType.TITLE;
+            }
+            if (node.Clickable)
+            {
+                return NodeType.BUTTON;
+            }
+            else
+                return NodeType.NONE;
+        }
+
+        /// <summary>
+        /// Retrieves the <see cref="NodeInfo"/> readable node type based on the properties of the specified node.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> NodeInfo object representing the node to determine the type for.</param>
+        /// <param name="context">The <see cref="Context"/> for accessing the string resource.</param>
+        /// <returns>
+        ///   The NodeType corresponding to the properties of the node.
+        ///   </returns>
+        public static string GetReadableNodeType(this NodeInfo node, Context context)
+        {
+            Debug.WriteLine("Getting the readable node type");
+            var nodeType = node.GetNodeType();
+            return (nodeType) switch
+            {
+                NodeType.NONE => string.Empty,
+                NodeType.IMAGE => context.GetString(Resource.String.text_image_type),
+                NodeType.SWITCH => context.GetString(Resource.String.text_switch_type, node.GetState(context)),
+                NodeType.TOGGLE => context.GetString(Resource.String.text_toggle_type, node.GetState(context)),
+                NodeType.RADIO => context.GetString(Resource.String.text_radio_type, node.GetState(context)),
+                NodeType.CHECKBOX => context.GetString(Resource.String.text_checkbox_type, node.GetState(context)),
+                NodeType.CHECKABLE => context.GetString(Resource.String.text_checkable_type, node.GetState(context)),
+                NodeType.BUTTON => context.GetString(Resource.String.text_button_type),
+                NodeType.EDITABLE => context.GetString(Resource.String.text_editable_type),
+                NodeType.OPTION => context.GetString(Resource.String.text_option_type),
+                NodeType.LIST => context.GetString(Resource.String.text_list_type),
+                NodeType.TITLE => context.GetString(Resource.String.text_title_type),
+                _ => string.Empty,
+            };
+        }
+
+        /// <summary>
+        /// Gets the state text based on the properties of the specified <see cref="NodeInfo"/> node.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> NodeInfo object representing the node to retrieve the state text for.</param>
+        /// <returns>
+        ///   The state text corresponding to the properties of the node. The returned text can be one of the following:
+        ///   - If the node is enabled, the text from the resource with the ID Resource.String.text_enabled is returned.
+        ///   - If the node is disabled, the text from the resource with the ID Resource.String.text_disabled is returned.
+        ///   - If the node is checked, the text from the resource with the ID Resource.String.text_checked is returned.
+        ///   - If the node is unchecked, the text from the resource with the ID Resource.String.text_unchecked is returned.
+        ///   - If the state cannot be determined, the text from the resource with the ID Resource.String.text_unknown is returned.
+        /// </returns>
+        public static string GetState(this NodeInfo node, Context context)
+        {
+            Debug.WriteLine("Getting the state of the node");
+            if (node.Enabled)
+            {
+                return context.GetString(Resource.String.text_enabled);
+            }
+            if (!node.Enabled)
+            {
+                return context.GetString(Resource.String.text_disabled);
+            }
+            if (node.Checked)
+            {
+                return context.GetString(Resource.String.text_checked);
+            }
+            if (!node.Checked)
+            {
+                return context.GetString(Resource.String.text_unchecked);
+            }
+            else
+                return context.GetString(Resource.String.text_unknown);
+        }
 
         /// <summary>
         /// Determines if the <see cref="NodeInfo"/> has any type of click.
