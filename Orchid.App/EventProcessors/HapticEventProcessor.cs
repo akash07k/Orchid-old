@@ -20,6 +20,7 @@ namespace Orchid.App.EventProcessors
 
         private const string _TAG = "Orchid.HapticEventProcessor";
         private readonly Context _context;
+        private Vibe _vibe;
 
         #endregion Private Fields
 
@@ -38,6 +39,7 @@ namespace Orchid.App.EventProcessors
         {
             Log.Debug(_TAG, $"Initializing the {_TAG}.");
             _context = context;
+            _vibe = new Vibe(context);
         }
 
         #endregion Public Constructors
@@ -47,6 +49,16 @@ namespace Orchid.App.EventProcessors
         public void OnEvent(AccessibilityEvent accessibilityEvent)
         {
             // Log.Debug(_TAG, "Received the event, processing it.");
+            var node = NodeInfo.Wrap(accessibilityEvent.Source);
+            if (node != null)
+            {
+                switch (accessibilityEvent.EventType)
+                {
+                    case EventTypes.ViewHoverEnter:
+                        _vibe.VibrateTick();
+                        break;
+                }
+            }
         }
 
         #endregion Public Methods
