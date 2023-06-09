@@ -27,7 +27,7 @@ namespace Orchid.App
 
         public override void OnAccessibilityEvent(AccessibilityEvent? e)
         {
-            Log.Debug(_TAG, "Received the accessibility event");
+            //            Log.Debug(_TAG, "Received the accessibility event");
             foreach (var processor in _eventProcessors)
             {
                 // Log.Debug(_TAG, $"Propagating the accessibility event to {processor.Name}.");
