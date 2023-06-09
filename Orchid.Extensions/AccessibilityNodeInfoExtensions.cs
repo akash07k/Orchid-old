@@ -33,6 +33,43 @@ namespace Orchid.Extensions
         #region Public Methods
 
         /// <summary>
+        /// Retrieves the content of the specified <see cref="NodeInfo"/> based on the provided <see cref="Context"/> context.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> from which to retrieve the content.</param>
+        /// <param name="context">The <see cref="Context"/> used for retrieving the content.</param>
+        /// <returns>
+        /// A string containing the content of the specified node, separated by commas.
+        /// The content is determined based on the following priority:
+        /// 1. ContentDescription: If not null or empty, it is used as the content.
+        /// 2. Text: If ContentDescription is null or empty, Text is used as the content.
+        /// 3. HintText: If both ContentDescription and Text are null or empty, HintText is used as the content.
+        /// The result is a combination of the determined content and the readable node type.
+        /// </returns>
+        public static string GetContent(this NodeInfo node, Context context)
+        {
+            string content = string.Empty;
+            if (!node.ContentDescription.IsNullOrEmpty())
+            {
+                content = node.ContentDescription;
+            }
+            else if (!node.Text.IsNullOrEmpty())
+            {
+                content = node.Text;
+            }
+            if (!node.HintText.IsNullOrEmpty())
+            {
+                content = node.HintText;
+            }
+            string finalContent = new List<string>
+{
+content, node.GetReadableNodeType(context)
+}
+            .FilterNotNullOrEmpty()
+            .JoinToString(", ");
+            return finalContent;
+        }
+
+        /// <summary>
         /// Retrieves the <see cref="NodeInfo"/> node type based on the properties of the specified node.
         /// </summary>
         /// <param name="node">The <see cref="NodeInfo"/> NodeInfo object representing the node to determine the type for.</param>
