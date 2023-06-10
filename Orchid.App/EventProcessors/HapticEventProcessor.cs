@@ -57,6 +57,11 @@ namespace Orchid.App.EventProcessors
                     case EventTypes.ViewHoverEnter:
                         _vibe.VibrateTick();
                         break;
+
+                    case EventTypes.ViewClicked:
+                    case EventTypes.ViewContextClicked:
+                        _vibe.VibrateClick();
+                        break;
                 }
             }
         }
