@@ -305,6 +305,25 @@ content, node.GetReadableNodeType(context)
         }
 
         /// <summary>
+        /// Determines if the <see cref="NodeInfo"/> is ignorable.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> AccessibilityNodeInfo object representing the node to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the node should be ignored for accessibility purposes; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsIgnorable(this NodeInfo node)
+        {
+            if (node != null)
+            {
+                return node.ImportantForAccessibility == false || node.VisibleToUser == false;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Logs the information of a <see cref="NodeInfo"/> object.
         /// </summary>
         /// <param name="node">The <see cref="NodeInfo"/> object to log.</param>
