@@ -79,7 +79,7 @@ namespace Orchid.Extensions
             {
                 content = node.Text;
             }
-            if (!node.HintText.IsNullOrEmpty())
+            else if (!node.HintText.IsNullOrEmpty())
             {
                 content = node.HintText;
             }
