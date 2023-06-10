@@ -33,6 +33,29 @@ namespace Orchid.Extensions
         #region Public Methods
 
         /// <summary>
+        /// Retrieves the child content from the <see cref="NodeInfo"/> specified node based on the provided <see cref="Context"/> context.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> node from which to retrieve the child content.</param>
+        /// <param name="context">The <see cref="Context"/> context used for retrieving the child content.</param>
+        /// <returns>
+        /// A string containing the child content of the specified node, separated by commas.
+        /// If a child node is available for accessibility and not focusable, its content is added to the result.
+        /// </returns>
+        public static string GetChildContent(this NodeInfo node, Context context)
+        {
+            var childContent = new List<string>();
+            for (int index = 0; index < node.ChildCount; index++)
+            {
+                var childNode = node.GetChild(index);
+                if (childNode != null)
+                {
+                    childContent.Add(node.GetContent(context));
+                }
+            }
+            return string.Join(", ", childContent.Where(c => !string.IsNullOrEmpty(c)));
+        }
+
+        /// <summary>
         /// Retrieves the content of the specified <see cref="NodeInfo"/> based on the provided <see cref="Context"/> context.
         /// </summary>
         /// <param name="node">The <see cref="NodeInfo"/> from which to retrieve the content.</param>
@@ -59,6 +82,10 @@ namespace Orchid.Extensions
             if (!node.HintText.IsNullOrEmpty())
             {
                 content = node.HintText;
+            }
+            else if (!node.GetChildContent(context).IsNullOrEmpty())
+            {
+                content = node.GetChildContent(context);
             }
             string finalContent = new List<string>
 {
