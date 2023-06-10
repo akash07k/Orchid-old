@@ -57,6 +57,7 @@ namespace Orchid.App.EventProcessors
                 {
                     case EventTypes.ViewHoverEnter:
                         _tts.Speak(node.GetContent(_context));
+                        node.LogNode();
                         break;
                 }
             }
