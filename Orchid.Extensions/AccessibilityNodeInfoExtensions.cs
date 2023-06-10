@@ -296,7 +296,7 @@ content, node.GetReadableNodeType(context)
         {
             if (node != null)
             {
-                return node.Focusable || node.ScreenReaderFocusable || node.HasClick();
+                return node.IsIgnorable() && (node.Focusable || node.ScreenReaderFocusable || node.HasClick());
             }
             else
             {
