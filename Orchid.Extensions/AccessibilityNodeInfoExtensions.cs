@@ -282,6 +282,26 @@ content, node.GetReadableNodeType(context)
         }
 
         /// <summary>
+        /// Determines whether the specified <see cref="NodeInfo"/> is focusable.
+        /// </summary>
+        /// <param name="node">The <see cref="NodeInfo"/> AccessibilityNodeInfo object representing the node to check.</param>
+        /// <returns>
+        ///   <c>true</c> if the specified <see cref="NodeInfo"/> is not marked for ignoring and is either clickable,
+        ///   marked as screen reader focusable, or marked as focusable; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool IsFocusable(this NodeInfo node)
+        {
+            if (node != null)
+            {
+                return node.Focusable || node.ScreenReaderFocusable || node.HasClick();
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        /// <summary>
         /// Logs the information of a <see cref="NodeInfo"/> object.
         /// </summary>
         /// <param name="node">The <see cref="NodeInfo"/> object to log.</param>
