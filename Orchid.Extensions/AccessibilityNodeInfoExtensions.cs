@@ -49,7 +49,10 @@ namespace Orchid.Extensions
                 var childNode = node.GetChild(index);
                 if (childNode != null)
                 {
-                    childContent.Add(node.GetContent(context));
+                    if (childNode.IsFocusable())
+                    {
+                        childContent.Add(node.GetContent(context));
+                    }
                 }
             }
             return string.Join(", ", childContent.Where(c => !string.IsNullOrEmpty(c)));
