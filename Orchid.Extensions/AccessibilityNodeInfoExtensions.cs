@@ -43,6 +43,10 @@ namespace Orchid.Extensions
         /// </returns>
         public static string GetChildContent(this NodeInfo node, Context context)
         {
+            if (node == null)
+            {
+                return string.Empty;
+            }
             var childContent = new List<string>();
             for (int index = 0; index < node.ChildCount; index++)
             {
@@ -73,6 +77,10 @@ namespace Orchid.Extensions
         /// </returns>
         public static string GetContent(this NodeInfo node, Context context)
         {
+            if (node == null)
+            {
+                return string.Empty;
+            }
             string content = string.Empty;
             if (!node.ContentDescription.IsNullOrEmpty())
             {
