@@ -53,9 +53,9 @@ namespace Orchid.Extensions
                 var childNode = node.GetChild(index);
                 if (childNode != null)
                 {
-                    if (childNode.IsFocusable())
+                    if (!childNode.IsIgnorable() || childNode.IsFocusable())
                     {
-                        childContent.Add(node.GetContent(context));
+                        childContent.Add(childNode.GetContent(context));
                     }
                 }
             }
